@@ -32,7 +32,7 @@ app.post("/", async (req, res) => {
 
 	await setDoc(doc(db, "capstone", "garbage"), {
 		image: 'data:image/jpg;base64,'+image,
-		tag:"hello"
+		tag:tag
 	}).then(()=>{
 		res.send("Successful")
 	}).catch((err)=>{
