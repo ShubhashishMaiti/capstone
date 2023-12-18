@@ -12,9 +12,11 @@ app.use(
 	})
 );
 app.use(express.json());
-app.get("/", async (req, res) => {
-	const{im,ta}=req.body;
+app.get("/",(req,res)=>{
 	res.send("hello");
+})
+app.post("/", async (req, res) => {
+	const{im,ta}=req.body;
 	const firebaseConfig = {
 		apiKey: "AIzaSyBEDprNZsnE47poIacZb0wU5QvRxQKrNAk",
 		authDomain: "capstonev1-91070.firebaseapp.com",
