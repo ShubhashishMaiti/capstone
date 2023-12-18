@@ -16,7 +16,8 @@ app.get("/",(req,res)=>{
 	res.send("hello");
 })
 app.post("/", async (req, res) => {
-	const{im,ta}=req.body;
+	// console.log(req)
+	const{image,tag}=req.body;
 	const firebaseConfig = {
 		apiKey: "AIzaSyBEDprNZsnE47poIacZb0wU5QvRxQKrNAk",
 		authDomain: "capstonev1-91070.firebaseapp.com",
@@ -30,10 +31,15 @@ app.post("/", async (req, res) => {
 	const app = initializeApp(firebaseConfig);
 	const db = getFirestore(app);
 
-	await setDoc(doc(db, "capstone", "garbage"), {
-		image: im,
-		tag:ta
-	});
+	try{
+		await setDoc(doc(db, "capstone", "garbage"), {
+			image: image,
+			tag:"hello"
+		});
+	}catch(err){
+		console.log(err)
+	}
+	
 });
 app.listen(3000, () => {
 	console.log("Server running ", 3000);
