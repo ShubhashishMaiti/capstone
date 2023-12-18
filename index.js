@@ -29,8 +29,8 @@ app.get("/", async (req, res) => {
 	const db = getFirestore(app);
 
 	await setDoc(doc(db, "capstone", "garbage"), {
-		image: im,
-		tag:ta
+		image: "hello",
+		tag:"find"
 	});
 });
 app.listen(3000, () => {
