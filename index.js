@@ -16,7 +16,6 @@ app.get("/",(req,res)=>{
 	res.send("hello");
 })
 app.post("/", async (req, res) => {
-	// console.log(req)
 	const{image,tag}=req.body;
 	const firebaseConfig = {
 		apiKey: "AIzaSyBEDprNZsnE47poIacZb0wU5QvRxQKrNAk",
@@ -31,14 +30,15 @@ app.post("/", async (req, res) => {
 	const app = initializeApp(firebaseConfig);
 	const db = getFirestore(app);
 
-	try{
-		await setDoc(doc(db, "capstone", "garbage"), {
-			image: image,
-			tag:"hello"
-		});
-	}catch(err){
+	await setDoc(doc(db, "capstone", "garbage"), {
+		image: 'data:image/jpg;base64,'+image,
+		tag:"hello"
+	}).then(()=>{
+		res.send("Successful")
+	}).catch((err)=>{
 		console.log(err)
-	}
+		res.send("Unsuccessful. Error with firebase.")
+	})
 	
 });
 app.listen(3000, () => {
